@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 import json
 from flask_cors import CORS
 
@@ -20,7 +20,8 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
-        return {"data": DATA}, 200
+        b= {"data": DATA}, 200
+        return render_template("index.html",data=b)
     else:
         return {"message": "No data available"}, 404
 
