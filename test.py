@@ -1,7 +1,7 @@
 import requests
 import json
 
-url= "http://127.0.0.1:5000/TESTING"
+url= "https://servertest2-kw7i.onrender.com/TESTING"
 
 headers = {
     "ContentType":"application/json"
