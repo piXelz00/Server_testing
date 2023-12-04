@@ -7,6 +7,14 @@ import pytz
 DATA = None
 app = Flask(__name__)
 
+ # Set the time zone for India Standard Time (IST)
+ist_tz = pytz.timezone('Asia/Kolkata')
+# Get the current time in IST
+ist_time = datetime.now(ist_tz)
+# Format the time as a string
+formatted_time = ist_time.strftime('%Y-%m-%d %H:%M:%S %Z')
+
+
 CORS(app)
 @app.route("/TESTING",methods = ['POST'])
 def hello():
@@ -22,12 +30,7 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
-        # Set the time zone for India Standard Time (IST)
-        ist_tz = pytz.timezone('Asia/Kolkata')
-        # Get the current time in IST
-        ist_time = datetime.now(ist_tz)
-        # Format the time as a string
-        formatted_time = ist_time.strftime('%Y-%m-%d %H:%M:%S %Z')
+       
     
         b = {" A Random String ":DATA,
              "Timestamp":formatted_time}
