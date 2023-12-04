@@ -20,7 +20,7 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
-        time = datetime.now()
+        time = str(datetime.now())
         b = {" A Random String ":DATA,
              "Timestamp":time}
         return render_template("index.html",data=b)
