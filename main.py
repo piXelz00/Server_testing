@@ -1,7 +1,7 @@
 from flask import Flask,request,render_template
 import json
 from flask_cors import CORS
-
+from datetime import datetime
 DATA = None
 app = Flask(__name__)
 
@@ -20,7 +20,8 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
-        b= {"data": DATA}, 200
+        b = {" A Random String ":DATA,
+             "Timestamp":datetime.now()}
         return render_template("index.html",data=b)
     else:
         return {"message": "No data available"}, 404
