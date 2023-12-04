@@ -24,7 +24,8 @@ def get_global_data():
              "Timestamp":datetime.now()}
         return render_template("index.html",data=b)
     else:
-        return {"message": "No data available"}, 404
+        return {"message": "No data available,",
+                "Timestamp":datetime.now()}, 404
 
 if __name__ == '__main__':
     app.run()
