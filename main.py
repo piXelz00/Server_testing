@@ -10,7 +10,7 @@ CORS(app)
 def hello():
     if request.method=="POST":
         global DATA
-        DATA = request.get_json(force=True)
+        DATA = request.get_json()
         print(DATA)
         return json.dumps({'success':True}), 200, {
     "ContentType":"application/json"
@@ -20,12 +20,14 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
+        time = datetime.now()
         b = {" A Random String ":DATA,
-             "Timestamp":datetime.now()}
+             "Timestamp":time}
         return render_template("index.html",data=b)
     else:
         return {"message": "No data available,",
                 "Timestamp":datetime.now()}, 404
+
 
 if __name__ == '__main__':
     app.run()
