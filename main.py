@@ -2,6 +2,8 @@ from flask import Flask,request,render_template
 import json
 from flask_cors import CORS
 from datetime import datetime
+import pytz
+
 DATA = None
 app = Flask(__name__)
 
@@ -20,13 +22,19 @@ def hello():
 def get_global_data():
     global DATA
     if DATA is not None:
-        time = str(datetime.now())
+        # Set the time zone for India Standard Time (IST)
+        ist_tz = pytz.timezone('Asia/Kolkata')
+        # Get the current time in IST
+        ist_time = datetime.now(ist_tz)
+        # Format the time as a string
+        formatted_time = ist_time.strftime('%Y-%m-%d %H:%M:%S %Z')
+    
         b = {" A Random String ":DATA,
-             "Timestamp":time}
+             "Timestamp":formatted_time}
         return render_template("index.html",data=b)
     else:
         return {"message": "No data available,",
-                "Timestamp":datetime.now()}, 404
+                "Timestamp":formatted_time}, 404
 
 
 if __name__ == '__main__':

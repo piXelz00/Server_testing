@@ -4,3 +4,4 @@ Flask>=2.0.1
 requests>=2.26.0
 json5>=0.9.6
 Flask-CORS>=3.0.10
+pytz>=2023.3.post1
